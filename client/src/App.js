@@ -25,7 +25,7 @@ const cache = new InMemoryCache({
 });
 
 const client = new ApolloClient({
-  uri: 'https://cocoon-api.onrender.com/graphql',
+  uri: 'https://cocoon-api.onrender.com/',
   cache: cache,
 })
 
