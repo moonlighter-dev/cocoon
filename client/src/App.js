@@ -25,7 +25,7 @@ const cache = new InMemoryCache({
 });
 
 const client = new ApolloClient({
-  uri: 'https://cocoon-api.onrender.com/',
+  uri: 'https://cocoon-api.onrender.com/graphql',
   cache: cache,
 })
 
@@ -37,7 +37,7 @@ function App() {
           <Header />
           <div className="container">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" exact element={<Home />} />
               <Route path="/projects/:id" element={<Project /> } />
               {/* Leave this at the end */}
               <Route path="*" element={<NotFound /> } />
