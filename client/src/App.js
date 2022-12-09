@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Header from "./components/Header";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import Home from './pages/Home';
@@ -33,17 +33,17 @@ function App() {
   return (
     <>
       <ApolloProvider client={client}>
-        <Router>
+        {/* <Router> */}
           <Header />
           <div className="container">
             <Routes>
-              <Route path="/" exact element={<Home />} />
+              <Route exact path="/" element={<Home />} />
               <Route path="/projects/:id" element={<Project /> } />
               {/* Leave this at the end */}
               <Route path="*" element={<NotFound /> } />
             </Routes>
           </div>
-        </Router>
+        {/* </Router> */}
       </ApolloProvider>
     </>
   );
