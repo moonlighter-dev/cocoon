@@ -9,20 +9,23 @@ export default function EditProjectForm({ project }) {
     // the useState of status is harder to get to because of the key/value structure on the backend
     // TODO: can fix this - get the key for the enum and pass it in
     const [status, setStatus] = useState('');
+    const [dueDate, setDueDate] = useState(project.dueDate);
 
     const [updateProject] = useMutation(UPDATE_PROJECT, {
-        variables: { id: project.id, name, description, status},
+        variables: { id: project.id, name, description, status, dueDate},
         refetchQueries: [{ query: GET_PROJECT, variables: { id: project.id } }],
     })
 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        if( !name || !description || !status ) {
+        if( !name || !description || !status || !dueDate ) {
             return alert("Please fill out all fields")
         }
 
-        updateProject(name, description, status)
+        // console.log(name, description, status, dueDate)
+
+        updateProject(name, description, status, dueDate)
     }
 
     return (
@@ -45,7 +48,11 @@ export default function EditProjectForm({ project }) {
                         <option value="completed">Completed</option>
                     </select>
                 </div>
-                <button type="submit" data-bs-dismiss="modal" className="btn btn-primary">Submit</button>
+                <div className="mb-3">
+                    <label className="form-label">Due Date</label>
+                    <input type="date" className="form-control" id="dueDate" value={dueDate} onChange={ (e) => setDueDate(e.target.value)}/>
+                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         </div>
     )

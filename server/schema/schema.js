@@ -23,6 +23,7 @@ const ProjectType = new GraphQLObjectType({
         name: { type: GraphQLString },
         description: { type: GraphQLString },
         status: { type: GraphQLString },
+        dueDate: { type: GraphQLString },
         client: { 
             type: ClientType,
             resolve(parent, args) {
@@ -119,6 +120,7 @@ const mutation = new GraphQLObjectType({
                     }),
                     defaultValue: 'Not Started',
                 },
+                dueDate: { type: GraphQLNonNull(GraphQLString) },
                 clientId: { type: GraphQLNonNull(GraphQLID) },
             },
             resolve(parent, args) {
@@ -126,6 +128,7 @@ const mutation = new GraphQLObjectType({
                     name: args.name,
                     description: args.description,
                     status: args.status,
+                    dueDate: args.date,
                     clientId: args.clientId,
                 });
 
@@ -157,6 +160,7 @@ const mutation = new GraphQLObjectType({
                         }
                     }),
                 },
+                dueDate: { type: GraphQLString },
             },
             resolve(parent, args) {
                 return Project.findByIdAndUpdate(
@@ -166,6 +170,7 @@ const mutation = new GraphQLObjectType({
                             name: args.name,
                             description: args.description,
                             status: args.status,
+                            dueDate: args.dueDate,
                         },
                     },
                     { new: true }

@@ -14,7 +14,6 @@ I wanted to play with GraphQL's targeted functionality - I had heard that the qu
 The highlight of this experiment was using GraphiQL to make queries and mutations that returned only specific data. I had previously used Postman for this task, and it was a refreshing change to have it built in to the backend (used in development only). Consolidating the endpoints with GraphQL made it noticeably easier to reference and access routes once I established them.
 
 ## Optimizations
-*(optional)*
 
 Features to add: Adding due dates to the schema will provide additional functionality for the app itself. In the front end, I could create a color scheme that responds differently if the due date is close (say within one week or one day), also the ability to sort projects by their due date.
 

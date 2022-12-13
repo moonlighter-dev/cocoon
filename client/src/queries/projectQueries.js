@@ -6,6 +6,7 @@ const GET_PROJECTS = gql`
             id
             name
             status
+            dueDate
         }
     }
 `;
@@ -17,6 +18,7 @@ const GET_PROJECT = gql`
             name
             description
             status
+            dueDate
             client {
                 id
                 name

@@ -14,6 +14,7 @@ export default function Project() {
 
     if (loading) return <Spinner />;
     if (error) return <p>Something went wrong</p>;
+//    console.log(data)
 
     return (
         <>
@@ -26,6 +27,9 @@ export default function Project() {
                     
                     <h5 className="mt-3">Project Status</h5>
                     <p className="lead">{data.project.status}</p>
+
+                    <h5 className="mt-3">Due Date</h5>
+                    <p className="lead">{data.project.dueDate}</p>
 
                     <ClientInfo client={data.project.client} />
 

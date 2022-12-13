@@ -10,9 +10,10 @@ export default function AddProjectModal() {
     const [description, setDescription] = useState('');
     const [clientId, setClientId] = useState('');
     const [status, setStatus] = useState('new');
+    const [dueDate, setDueDate] = useState('');
 
     const [addProject] = useMutation(ADD_PROJECT, {
-        variables: { name, description, clientId, status },
+        variables: { name, description, clientId, status, dueDate },
         update(cache, { data: { addProject } }) {
             const { projects } = cache.readQuery({ query: GET_PROJECTS });
 
@@ -28,15 +29,18 @@ export default function AddProjectModal() {
     const onSubmit = (e) => {
         e.preventDefault();
         
-        if(name === "" || description === "" || status === "") {
+        if(name === "" || description === "" || status === "" || dueDate === "") {
             return alert("Please fill in all fields");
         }
 
-        addProject(name, description, clientId, status);
+        console.log(dueDate)
+
+        addProject(name, description, clientId, status, dueDate.toString());
 
         setName("");
         setDescription("");
         setStatus("new");
+        setDueDate("");
         setClientId("");
     };
 
@@ -80,6 +84,10 @@ export default function AddProjectModal() {
                                     <option value="progress">In Progress</option>
                                     <option value="completed">Completed</option>
                                 </select>
+                            </div>
+                            <div className="mb-3">
+                                <label className="form-label">Due Date</label>
+                                <input type="date" className="form-control" id="dueDate" value={dueDate} onChange={ (e) => setDueDate(e.target.value)}/>
                             </div>
                             <div className="mb-3">
                                 <label className='form-label'>Client</label>
